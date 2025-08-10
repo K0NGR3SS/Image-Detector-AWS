@@ -25,7 +25,7 @@ I created an S3 bucket to store incoming images and a DynamoDB table to hold ana
 - S3 handles the image storage and triggers
 - DynamoDB stores structured analysis data with `ImageName` as the primary key
 
-![S3 Bucket Creation](images/s3-creation.png)
+![S3 Bucket Creation](reconn-images/s3-creation.png)
 
 ---
 
@@ -35,7 +35,7 @@ The core logic lives in a Python Lambda function that:
 - **Calls** Amazon Rekognition to analyze the image  
 - **Stores** the detected labels and confidence scores in DynamoDB
 
-![Lambda Function](images/lambda-function-success.png)  
+![Lambda Function](reconn-images/lambda-function-success.png)  
 [View full Lambda code](rekognition_lambda.py)
 
 ---
@@ -43,7 +43,7 @@ The core logic lives in a Python Lambda function that:
 **3. Configuring the Event Trigger**  
 I set up S3 to automatically trigger the Lambda function whenever a new image gets uploaded.
 
-![Lambda Trigger Setup](images/lambda-trigger.png)
+![Lambda Trigger Setup](reconn-images/lambda-trigger.png)
 
 ---
 
@@ -54,7 +54,7 @@ The Lambda function needs specific permissions to:
 - **Write** results to DynamoDB
 For this project I added permissions for full access DynampDB, Rekognition and read on;y permissions for S3
 
-![Permission Policy](images/permission-policy-lambda.png)
+![Permission Policy](reconn-images/permission-policy-lambda.png)
 
 ---
 
@@ -64,7 +64,7 @@ When I upload an image:
 - Rekognition detects objects like "Person", "Car", "Building"
 - Results get stored in DynamoDB with confidence scores
 
-![Analysis Results](images/result.png)
+![Analysis Results](reconn-images/result.png)
 
 ---
 **Tech Stack:**
